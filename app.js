@@ -7,7 +7,7 @@ app.config(function($routeProvider){
 });
 app.controller('mainController', function($http, $log){
     //$log.info("I am ready to load!");
-    this.cuisine_array = ['french', 'vegan'];
+    //this.cuisine_array = ['french', 'vegan'];
     this.cuisine = $('.cuisine').val();
     this.cuisine_key = '?cuisine=' + this.cuisine;
 
