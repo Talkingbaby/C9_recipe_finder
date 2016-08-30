@@ -1,0 +1,7 @@
+.container div{
+    height: 80vh;
+    background-color: lightgoldenrodyellow;
+}
+.container div.recipe_info{
+    background-color: lightseagreen;
+}

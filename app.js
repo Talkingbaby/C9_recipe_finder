@@ -5,16 +5,18 @@ app.config(function($routeProvider){
             templateUrl: "index.html"
         })
 });
-app.controller('mainController', function($log){
+app.controller('mainController', function($http, $log){
     $log.info("I am ready to load!");
     $http({
         method: 'GET',
-        url: '/someUrl'
+        url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=french&number=25&license=true',
+        headers: {
+            'X-mashape-key': 'VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9'
+        }
     }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
+        var results = response.data.results;
+        $log.info("Response: ", results);
     }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
+        $log.error("Response: ", response);
     });
 });
