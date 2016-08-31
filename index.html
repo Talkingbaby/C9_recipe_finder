@@ -33,22 +33,22 @@
     <div class="container-fluid">
         <div class="form-group col-sm-2 col-sm-offset-3">
             <label>Choose Style</label>
-            <select class="form-control"  ng-model="mc.searchInput.style">
+            <select class="form-control"  ng-model="mc.searchParams.style">
                 <option value="french" >French</option>
                 <option value="vegan">Vegan</option>
             </select>
-            <h3>this.searchInput.style: {{mc.searchInput.style}}</h3>
+            <h3>searchParams.style: {{mc.searchParams.style}}</h3>
         </div>
         <div class="form-group col-sm-2">
             <label>Cook Time</label>
-            <select class="form-control" ng-model="mc.searchInput.cookTime">
+            <select class="form-control" ng-model="mc.searchParams.cookTime">
                 <option value="15">0 - 15 min</option>
                 <option value="30">15 - 30 min</option>
                 <option value="45">30 - 45 min</option>
                 <option value="60">45 - 60 min</option>
                 <option value="65">60+ min</option>
             </select>
-            <h3>this.searchInput.cookTime: {{mc.searchInput.cookTime}}</h3>
+            <h3>searchParams.cookTime: {{mc.searchParams.cookTime}}</h3>
         </div>
         <div class="searchButton col-sm-2">
         <button class="btn btn-success" ng-click="mc.getSpoonacularData()"><a href="#recipe-list">Search</a></button>

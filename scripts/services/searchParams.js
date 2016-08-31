@@ -7,6 +7,7 @@ app.factory("searchParams",function () {
     return {
         style: "",
         cookTime: "",
-        SpoonacularData: []
+        SpoonacularData: [],
+        sortedData: []
     };
 });

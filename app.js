@@ -68,22 +68,16 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
 
     self.searchParams = searchParams;
 
-    this.searchInput = {
-        style: "",
-        cookTime: "",
-        SpoonacularData: []
-    };
-    searchParams = this.searchInput;
-
     this.getSpoonacularData = function(){
         var self = this;
         recipe_list_data.callSpoonacularData().then (function (data){
             $log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
             self.spoonacularData = data.results;
+            searchParams.SpoonacularData = data.results;
             //$log.log('spoonacularData: ', self.spoonacularData);
         });
-        console.log("searchInput.style = ", this.searchInput.style);
-        console.log("searchInput.cookTime = ", this.searchInput.cookTime);
+        console.log("searchInput.style = ", searchParams.style);
+        console.log("searchInput.cookTime = ",searchParams.cookTime);
         console.log("searchParams service = ", searchParams);
     };
 
