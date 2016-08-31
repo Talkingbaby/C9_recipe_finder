@@ -5,7 +5,8 @@ app.config(function($routeProvider){
             templateUrl: "index.html"
         })
         .when('/recipe-list',{
-            templateUrl: "list.html"
+            templateUrl: "list.html",
+            controller: "recipe-list-controller"
         })
         .when('/recipe',{
             templateUrl: "recipe.html"
@@ -15,10 +16,12 @@ app.config(function($routeProvider){
         })
 });
 
-app.factory("recipe_list_data", function($http, $q){
+app.factory("recipe_list_data", function($http, $q, searchParams){
     var service = {};
     var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=french&limitLicense=false&number=25';
     var url = '';
+    var fself = this;
+    fself.searchp = searchParams;
     //var searchTerm = '';
 
 
@@ -43,8 +46,8 @@ app.factory("recipe_list_data", function($http, $q){
         }).then(function(response){
             console.log("recipe_list_data.service.callSpoonacularData: success");
             data = response.data;
+            fself.searchp.SpoonacularData = data.results;
             defer.resolve(data);
-
         }, function(response){
             defer.reject(reponse);
         });
@@ -65,21 +68,16 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
 
     self.searchParams = searchParams;
 
-    this.searchInput = {
-        style: "",
-        cookTime: ""
-    };
-    searchParams = this.searchInput;
-
     this.getSpoonacularData = function(){
         var self = this;
         recipe_list_data.callSpoonacularData().then (function (data){
             $log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
             self.spoonacularData = data.results;
+            searchParams.SpoonacularData = data.results;
             //$log.log('spoonacularData: ', self.spoonacularData);
         });
-        console.log("searchInput.style = ", this.searchInput.style);
-        console.log("searchInput.cookTime = ", this.searchInput.cookTime);
+        console.log("searchInput.style = ", searchParams.style);
+        console.log("searchInput.cookTime = ",searchParams.cookTime);
         console.log("searchParams service = ", searchParams);
     };
 
