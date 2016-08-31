@@ -5,7 +5,8 @@ app.config(function($routeProvider){
             templateUrl: "index.html"
         })
         .when('/recipe-list',{
-            templateUrl: "list.html"
+            templateUrl: "list.html",
+            controller: "recipe-list-controller"
         })
         .when('/recipe',{
             templateUrl: "recipe.html"
