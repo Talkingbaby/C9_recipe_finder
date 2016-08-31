@@ -6,6 +6,7 @@ app.factory("searchParams",function () {
 
     return {
         style: "",
-        cookTime: ""
+        cookTime: "",
+        SpoonacularData: []
     };
 });
