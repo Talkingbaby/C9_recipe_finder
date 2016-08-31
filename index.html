@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
     <script src="app.js"></script>
+    <script src="scripts/services/searchParams.js"></script>
 
 
 </head>
@@ -32,24 +33,26 @@
     <div class="container-fluid">
         <div class="form-group col-sm-2 col-sm-offset-3">
             <label>Choose Style</label>
-            <select class="form-control">
-                <option>French</option>
-                <option>Vegan</option>
+            <select class="form-control"  ng-model="mc.searchInput.style">
+                <option value="french" >French</option>
+                <option value="vegan">Vegan</option>
             </select>
+            <h3>this.searchInput.style: {{mc.searchInput.style}}</h3>
         </div>
         <div class="form-group col-sm-2">
             <label>Cook Time</label>
-            <select class="form-control">
-                <option>0 - 15 min</option>
-                <option>15 - 30 min</option>
-                <option>30 - 45 min</option>
-                <option>45 - 60 min</option>
-                <option>60+ min</option>
+            <select class="form-control" ng-model="mc.searchInput.cookTime">
+                <option value="15">0 - 15 min</option>
+                <option value="30">15 - 30 min</option>
+                <option value="45">30 - 45 min</option>
+                <option value="60">45 - 60 min</option>
+                <option value="65">60+ min</option>
             </select>
+            <h3>this.searchInput.cookTime: {{mc.searchInput.cookTime}}</h3>
         </div>
         <div class="searchButton col-sm-2">
-        <button class="btn btn-success"><a href="#recipe-list">Search</a></button>
-        <button class="btn btn-success">Random</button>
+        <button class="btn btn-success" ng-click="mc.getSpoonacularData()"><a href="#recipe-list">Search</a></button>
+        <button class="btn btn-success" ng-click="mc.getSpoonacularData()">Random</button>
         </div>
     </div>
 
