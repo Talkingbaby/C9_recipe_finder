@@ -4,13 +4,19 @@ body{
     /*background-repeat: no-repeat;*/
     /*background-attachment: fixed;*/
 }
-.mainSearch{
-    position: absolute;
-    top: 250px;
-    left: 15%;
+div.container-fluid{
+    padding-left: 50px;
 }
-.buttonWrap{
-    position: absolute;
-    top: 42%;
-    left: 64%;
+.searchButton{
+    padding: 24px;
+}
+.btn{
+    margin-right: 5px;
+}
+.white-text {
+	color: white;
+}
+
+.list-group-item.salmon {
+	background-color: salmon;
 }
