@@ -16,28 +16,27 @@ app.config(function($routeProvider){
         })
 });
 
-app.factory("recipe_list_data", function($http, $q, searchParams){
+app.factory("recipe_list_data", function($http, $q, $log, searchParams){
     var service = {};
-    var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=american&limitLicense=false&number=100';
+    var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=';
+    var return_number = '&number=100';
     var url = '';
     var fself = this;
     fself.searchp = searchParams;
-    //var searchTerm = '';
+    var searchTerm = '';
 
 
-    // var makeUrl = function(){
-    //     url = baseUrl + searchTerm;
-    // };
+    var makeUrl = function(){
+        url = baseUrl + searchParams.style + return_number;
+    };
 
-    // service.setSearch = function(s){
-    //     searchTerm = s;
-    //     makeUrl();
-    // };
 
     service.callSpoonacularData = function(){
+        makeUrl();
+        $log.info('url: ', url);
         var defer = $q.defer();
         $http({
-            url: baseUrl,
+            url: url,
             method: 'get',
             dataType: 'json',
             headers: {
@@ -72,16 +71,15 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
         var self = this;
         recipe_list_data.callSpoonacularData().then (function (data){
             $log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
-            self.spoonacularData = data.results;
+            //self.spoonacularData = data.results;
             searchParams.SpoonacularData = data.results;
-            //$log.log('spoonacularData: ', self.spoonacularData);
+            $log.log('KYLE spoonacularData: ', searchParams);
         });
         console.log("searchInput.style = ", searchParams.style);
         console.log("searchInput.cookTime = ",searchParams.cookTime);
-        console.log("searchParams service = ", searchParams.SpoonacularData);
     };
 
 
-    this.getSpoonacularData();
+
 }]);
 
