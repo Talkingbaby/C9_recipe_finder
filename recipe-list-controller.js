@@ -1,4 +1,4 @@
-app.controller('recipe-list-controller',["$log","$http","searchParams", function ($log,$http,searchParams) {
+app.controller('recipe-list-controller',["$log","$http","searchParams", "recipe_instructions", function ($log,$http,searchParams, recipe_instructions) {
     var self = this;
     var sorted_array = [];
     console.log("list controller");
@@ -26,4 +26,16 @@ app.controller('recipe-list-controller',["$log","$http","searchParams", function
     searchParams.sortedData = sorted_array;
     console.log("sorted array: ", sorted_array);
     console.log("searchParam in list: ", searchParams);
+
+    this.getRecipeInstructions = function (index) {
+        $log.log('getRecipeInstructions function called');
+        $log.log('sortedData: ', searchParams.sortedData);
+        searchParams.recipeID = searchParams.sortedData[index].id;
+        recipe_instructions.getSpoonacularRecipeInstructions()
+            .then(function (data) {
+                searchParams.recipeInstructions = data[0].steps;
+                $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+            });
+    };
+
 }]);

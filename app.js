@@ -1,14 +1,14 @@
 var app = angular.module('recipeApp', ['ngRoute']);
-app.config(function($routeProvider){
+app.config(function ($routeProvider) {
     $routeProvider
-        .when('/',{
+        .when('/', {
             templateUrl: "index.html"
         })
-        .when('/recipe-list',{
+        .when('/recipe-list', {
             templateUrl: "list.html",
             controller: "recipe-list-controller"
         })
-        .when('/recipe',{
+        .when('/recipe', {
             templateUrl: "recipe.html"
         })
         .otherwise({
@@ -16,7 +16,7 @@ app.config(function($routeProvider){
         })
 });
 
-app.factory("recipe_list_data", function($http, $q, searchParams){
+app.factory("recipe_list_data", function ($http, $q, searchParams) {
     var service = {};
     var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=french&limitLicense=false&number=25';
     var url = '';
@@ -34,7 +34,7 @@ app.factory("recipe_list_data", function($http, $q, searchParams){
     //     makeUrl();
     // };
 
-    service.callSpoonacularData = function(){
+    service.callSpoonacularData = function () {
         var defer = $q.defer();
         $http({
             url: 'spoonacular_results.js',
@@ -43,12 +43,12 @@ app.factory("recipe_list_data", function($http, $q, searchParams){
             // headers: {
             //     "Content-Type": "X-My-Favorite-Field"
             // }
-        }).then(function(response){
+        }).then(function (response) {
             console.log("recipe_list_data.service.callSpoonacularData: success");
             data = response.data;
             fself.searchp.SpoonacularData = data.results;
             defer.resolve(data);
-        }, function(response){
+        }, function (response) {
             defer.reject(reponse);
         });
         return defer.promise;
@@ -56,7 +56,33 @@ app.factory("recipe_list_data", function($http, $q, searchParams){
     return service;
 });
 
-app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data", "searchParams",function($http, $log, $scope, recipe_list_data, searchParams){
+app.factory("recipe_instructions", function ($http, $q, searchParams) {
+    var service = {};
+    var fself = this;
+    fself.searchp = searchParams;
+    var recipeId = fself.searchp.recipeID;
+    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + recipeId + '/analyzedInstructions?stepBreakdown=true';
+
+
+    service.getSpoonacularRecipeInstructions = function () {
+        var defer = $q.defer();
+        $http({
+            url: 'recipeID_561004_instruction.js', //replace this with 'url' variable when doing live call
+            method: 'get',
+            dataType: 'json'
+        }).then(function (response) {
+            console.log("recipe_instructions.service.getSpoonacularInstructions: success");
+            data = response.data;
+            defer.resolve(data);
+        }, function (response) {
+            defer.reject(response);
+        });
+        return defer.promise;
+    };
+    return service;
+});
+
+app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data", "searchParams", "recipe_instructions", function ($http, $log, $scope, recipe_list_data, searchParams, recipe_instructions) {
     $log.info("mainController: I am ready to load!");
 
     var self = this;
@@ -68,20 +94,18 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
 
     self.searchParams = searchParams;
 
-    this.getSpoonacularData = function(){
-        var self = this;
-        recipe_list_data.callSpoonacularData().then (function (data){
+    this.getSpoonacularData = function () {
+        //var self = this;
+        recipe_list_data.callSpoonacularData().then(function (data) {
             $log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
-            self.spoonacularData = data.results;
+            //self.spoonacularData = data.results;
             searchParams.SpoonacularData = data.results;
             //$log.log('spoonacularData: ', self.spoonacularData);
         });
         console.log("searchInput.style = ", searchParams.style);
-        console.log("searchInput.cookTime = ",searchParams.cookTime);
+        console.log("searchInput.cookTime = ", searchParams.cookTime);
         console.log("searchParams service = ", searchParams);
     };
 
-
-    //this.getSpoonacularData();
 }]);
 

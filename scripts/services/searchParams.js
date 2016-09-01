@@ -8,6 +8,8 @@ app.factory("searchParams",function () {
         style: "",
         cookTime: "",
         SpoonacularData: [],
-        sortedData: []
+        sortedData: [{id: 0}],
+        recipeID: "",
+        recipeInstructions: []
     };
 });
