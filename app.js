@@ -112,6 +112,6 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
         console.log("searchParams service = ", searchParams);
     };
 
-this.getSpoonacularData();
+//this.getSpoonacularData();
 }]);
 
