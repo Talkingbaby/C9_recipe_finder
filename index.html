@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="recipeApp">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta charset="UTF-8">
     <title>Cook It</title>
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -30,31 +32,49 @@
     <h4>Don't worry about your next meal.</h4>
     <h4>Don't worry about where to start.</h4>
 </div>
-    <div class="container-fluid">
-        <div class="form-group col-sm-2 col-sm-offset-3">
-            <label>Choose Style</label>
-            <select class="form-control"  ng-model="mc.searchParams.style">
+    <div class="container-fluid center-block hidden-xs">
+        <div class="form-group form-inline col-xs-12 col-sm-4 col-sm-offset-2 hidden-xs">
+            <label>Choose Cuisine:</label>
+            <select class="form-control form-inline"  ng-model="mc.searchParams.style">
                 <option value="french" >French</option>
                 <option value="vegan">Vegan</option>
             </select>
-            <h3>searchParams.style: {{mc.searchParams.style}}</h3>
+            <!--<h3>searchParams.style: {{mc.searchParams.style}}</h3>-->
         </div>
-        <div class="form-group col-sm-2">
-            <label>Cook Time</label>
-            <select class="form-control" ng-model="mc.searchParams.cookTime">
+        <div class="form-group form-inline col-xs-12 col-sm-3">
+            <label>Cook Time:</label>
+            <select class="form-control form-inline" ng-model="mc.searchParams.cookTime">
                 <option value="15">0 - 15 min</option>
                 <option value="30">15 - 30 min</option>
                 <option value="45">30 - 45 min</option>
                 <option value="60">45 - 60 min</option>
                 <option value="65">60+ min</option>
             </select>
-            <h3>searchParams.cookTime: {{mc.searchParams.cookTime}}</h3>
+            <!--<h3>searchParams.cookTime: {{mc.searchParams.cookTime}}</h3>-->
         </div>
-        <div class="searchButton col-sm-2">
-        <button class="btn btn-success" ng-click="mc.getSpoonacularData()"><a href="#recipe-list">Search</a></button>
-        <button class="btn btn-success" ng-click="mc.getSpoonacularData()">Random</button>
-        </div>
+        <!--<div class="searchButton col-xs-12 col-sm-2">-->
+        <button class="btn btn-success hidden-xs" ng-click="mc.getSpoonacularData()"><a href="#recipe-list">Search</a></button>
+        <button class="btn btn-success hidden-xs" ng-click="mc.getSpoonacularData()">Random</button>
     </div>
+
+<div class="form-group col-xs-12 visible-xs-block">
+    <label>Choose Cuisine</label>
+    <select class="form-control"  ng-model="mc.searchParams.style">
+        <option value="french" >French</option>
+        <option value="vegan">Vegan</option>
+    </select>
+</div>
+<div class="form-group col-xs-12 visible-xs-block">
+    <label>Cook Time</label>
+    <select class="form-control" ng-model="mc.searchParams.cookTime">
+        <option value="15">0 - 15 min</option>
+        <option value="30">15 - 30 min</option>
+        <option value="45">30 - 45 min</option>
+        <option value="60">45 - 60 min</option>
+        <option value="65">60+ min</option>
+    </select>
+</div>
+<button class="btn btn-success col-xs-10 col-xs-offset-1 visible-xs-block" ng-click="mc.getSpoonacularData()"><a href="#recipe-list">Search</a></button>
 
 </body>
 </html>
