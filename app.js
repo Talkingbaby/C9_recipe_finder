@@ -18,7 +18,7 @@ app.config(function($routeProvider){
 
 app.factory("recipe_list_data", function($http, $q, searchParams){
     var service = {};
-    var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=french&limitLicense=false&number=25';
+    var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=american&limitLicense=false&number=100';
     var url = '';
     var fself = this;
     fself.searchp = searchParams;
@@ -37,12 +37,12 @@ app.factory("recipe_list_data", function($http, $q, searchParams){
     service.callSpoonacularData = function(){
         var defer = $q.defer();
         $http({
-            url: 'spoonacular_results.js',
+            url: baseUrl,
             method: 'get',
-            dataType: 'json'
-            // headers: {
-            //     "Content-Type": "X-My-Favorite-Field"
-            // }
+            dataType: 'json',
+            headers: {
+                "X-Mashape-Key": "VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9"
+            }
         }).then(function(response){
             console.log("recipe_list_data.service.callSpoonacularData: success");
             data = response.data;
@@ -78,10 +78,10 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
         });
         console.log("searchInput.style = ", searchParams.style);
         console.log("searchInput.cookTime = ",searchParams.cookTime);
-        console.log("searchParams service = ", searchParams);
+        console.log("searchParams service = ", searchParams.SpoonacularData);
     };
 
 
-    //this.getSpoonacularData();
+    this.getSpoonacularData();
 }]);
 
