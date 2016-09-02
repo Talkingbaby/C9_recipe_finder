@@ -99,6 +99,8 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
     this.recipeTitle = '';
     this.recipeCookTime = 0;
     this.recipeImageFilename = '';
+    this.cuisine_array = ['french', 'vegan', 'italian', 'japanese'];
+    this.cooktime = ['0 - 15 min', '15 - 30 min','30 - 45 min','5 - 60 min','60+ min'];
 
     self.searchParams = searchParams;
 
