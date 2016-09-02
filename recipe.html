@@ -27,31 +27,13 @@
             <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-rounded center-block">
         </div>
         <h2>{{mc.searchParams.recipeTitle}}</h2>
-        <h3 class="lead">Food Information</h3>
+        <h3 class="lead">Number of Servings: <span class="badge">{{mc.searchParams.recipeIngredients.servings}}</span> </h3>
         <div class="list-group">
             <li class="list-group-item salmon">
               <h4 class="list-group-item-heading">Ingredients</h4>
             </li>
-            <li class="list-group-item">
-                olive oil <span class="badge">2 tablespoons</span>
-            </li>
-            <li class="list-group-item">
-                shallot <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                all purpose flour <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                steak seasoning <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                roast beef <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                baguette <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                pepper <span class="badge">A ton</span>
+            <li class="list-group-item" ng-repeat="ingredient in mc.searchParams.recipeIngredients.extendedIngredients">
+                {{ingredient.name}} <span class="badge">{{ingredient.amount | number}} {{ingredient.unit}}</span>
             </li>
         </div>
         <div class="list-group">

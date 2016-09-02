@@ -12,6 +12,7 @@ app.factory("searchParams",function () {
         recipeID: "",
         recipeTitle: "",
         recipeImage: "",
-        recipeInstructions: []
+        recipeInstructions: [],
+        recipeIngredients: []
     };
 });
