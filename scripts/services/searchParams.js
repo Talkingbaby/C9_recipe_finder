@@ -10,6 +10,8 @@ app.factory("searchParams",function () {
         SpoonacularData: [],
         sortedData: [{id: 0}],
         recipeID: "",
+        recipeTitle: "",
+        recipeImage: "",
         recipeInstructions: []
     };
 });

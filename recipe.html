@@ -24,9 +24,9 @@
     </nav>
     <div class="container">
         <div class="jumbotron">
-            <img src="https://spoonacular.com/recipeImages/Easy-French-Dip-Sandwiches-561004.jpg" alt="" class="img-responsive img-rounded center-block">
+            <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-rounded center-block">
         </div>
-        <h2>Easy French Dip Sandwiches</h2>
+        <h2>{{mc.searchParams.recipeTitle}}</h2>
         <h3 class="lead">Food Information</h3>
         <div class="list-group">
             <li class="list-group-item salmon">
@@ -73,11 +73,7 @@
         </div>
         <div class="panel panel-primary">
             <div class="panel-heading">Recipe How to</div>
-            <div class="panel-body">In a large skillet over medium heat, add olive oil and heat for 1 minute.</div>
-            <div class="panel-body">Add shallots and sauté for 2 minutes.</div>
-            <div class="panel-body">Add flour and sauté 2 more minutes.Slowly whisk in beef consommé. Bring to a boil over high heat. Reduce heat to low and simmer.</div>
-            <div class="panel-body">Add steak seasoning and pepper.Separate roast beef and place in the au jus sauce until warm. Using tongs, place an equal portion of beef on each section of baguette or rolls. Top with a slice of provolone cheese, if desired.</div>
-            <div class="panel-body">Serve with a small bowl of the extra au jus for dipping. Enjoy!</div>
+            <div class="panel-body" ng-repeat="instruction in mc.searchParams.recipeInstructions | filter: mc.checkRecipeStep">{{instruction.step}}</div>
         </div>
     </div>
 <div class="container">

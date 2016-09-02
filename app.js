@@ -64,16 +64,21 @@ app.factory("recipe_instructions", function ($http, $q, searchParams) {
     var service = {};
     var fself = this;
     fself.searchp = searchParams;
-    var recipeId = fself.searchp.recipeID;
-    var url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + recipeId + '/analyzedInstructions?stepBreakdown=true';
-
+    var url = "";
+    var createUrl = function(){
+      url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + fself.searchp.recipeID + '/analyzedInstructions?stepBreakdown=true';
+    };
 
     service.getSpoonacularRecipeInstructions = function () {
+        createUrl();
         var defer = $q.defer();
         $http({
-            url: 'recipeID_561004_instruction.js', //replace this with 'url' variable when doing live call
+            url: url, //'recipeID_561004_instruction.js'
             method: 'get',
-            dataType: 'json'
+            dataType: 'json',
+            headers: {
+                "X-Mashape-Key": "VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9"
+            }
         }).then(function (response) {
             console.log("recipe_instructions.service.getSpoonacularInstructions: success");
             data = response.data;
@@ -94,7 +99,6 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
     this.recipeTitle = '';
     this.recipeCookTime = 0;
     this.recipeImageFilename = '';
-    this.recipeImageUrl = "https://spoonacular.com/recipeImages/" + this.recipeImageFilename;
 
     self.searchParams = searchParams;
 
@@ -110,6 +114,23 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
 
         console.log("searchInput.cookTime = ",searchParams.cookTime);
         console.log("searchParams service = ", searchParams);
+    };
+
+    this.getRecipeInstructions = function (index) {
+        $log.log('getRecipeInstructions function called');
+        searchParams.recipeID = searchParams.sortedData[index].id;
+        searchParams.recipeImage = "https://spoonacular.com/recipeImages/" + searchParams.sortedData[index].image;
+        searchParams.recipeTitle = searchParams.sortedData[index].title;
+        recipe_instructions.getSpoonacularRecipeInstructions()
+            .then(function (data) {
+                searchParams.recipeInstructions = data[0].steps;
+                $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+            });
+    };
+
+    //function to check if 'step' property of searchParams.recipeInstructions contains a number or not
+    this.checkRecipeStep = function(element){
+        return isNaN(parseInt(element.step));
     };
 
 //this.getSpoonacularData();
