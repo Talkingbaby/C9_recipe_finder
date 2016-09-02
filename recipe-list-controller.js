@@ -30,16 +30,18 @@ app.controller('recipe-list-controller',["$log","$http","searchParams", "recipe_
     console.log("searchParam in list: ", searchParams);
 
 
-    this.getRecipeInstructions = function (index) {
-        $log.log('getRecipeInstructions function called');
-        $log.log('sortedData: ', searchParams.sortedData);
-        searchParams.recipeID = searchParams.sortedData[index].id;
-        recipe_instructions.getSpoonacularRecipeInstructions()
-            .then(function (data) {
-                searchParams.recipeInstructions = data[0].steps;
-                $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
-            });
-    };
+    // this.getRecipeInstructions = function (index) {
+    //     $log.log('getRecipeInstructions function called');
+    //     $log.log('sortedData: ', searchParams.sortedData);
+    //     searchParams.recipeID = searchParams.sortedData[index].id;
+    //     $log.log('searchParams.recipeID:', searchParams.recipeID);
+    //     recipe_instructions.getSpoonacularRecipeInstructions()
+    //         .then(function (data) {
+    //             searchParams.recipeInstructions = data[0].steps;
+    //             $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+    //         });
+    // };
 
+    //this.getRecipeInstructions(0);
 
 }]);
