@@ -17,7 +17,7 @@ app.config(function ($routeProvider) {
 });
 
 
-app.factory("recipe_list_data", function($http, $q, $log, searchParams){
+app.factory("recipe_list_data", function ($http, $q, $log, searchParams) {
 
     var service = {};
     var baseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?cuisine=';
@@ -28,13 +28,12 @@ app.factory("recipe_list_data", function($http, $q, $log, searchParams){
     var searchTerm = '';
 
 
-    var makeUrl = function(){
+    var makeUrl = function () {
         url = baseUrl + searchParams.style + return_number;
     };
 
 
-
-    service.callSpoonacularData = function(){
+    service.callSpoonacularData = function () {
         makeUrl();
         $log.info('url: ', url);
 
@@ -65,8 +64,8 @@ app.factory("recipe_instructions", function ($http, $q, searchParams) {
     var fself = this;
     fself.searchp = searchParams;
     var url = "";
-    var createUrl = function(){
-      url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + fself.searchp.recipeID + '/analyzedInstructions?stepBreakdown=true';
+    var createUrl = function () {
+        url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + fself.searchp.recipeID + '/analyzedInstructions?stepBreakdown=true';
     };
 
     service.getSpoonacularRecipeInstructions = function () {
@@ -91,7 +90,36 @@ app.factory("recipe_instructions", function ($http, $q, searchParams) {
     return service;
 });
 
-app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data", "searchParams", "recipe_instructions", function ($http, $log, $scope, recipe_list_data, searchParams, recipe_instructions) {
+app.factory("recipe_ingredients", function ($http, $q, $log, searchParams) {
+    var service = {};
+    var self = this;
+    self.searchp = searchParams;
+    var url = "";
+    var createUrl = function () {
+        url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + self.searchp.recipeID + "/information?includeNutrition=false"
+    };
+
+    service.getSpoonacularRecipeIngredients = function () {
+        createUrl();
+        var defer = $q.defer();
+        $http({
+            url: url,
+            method: "get",
+            dataTpe: "json",
+            headers: {"X-Mashape-Key": "VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9"}
+        }).then(function (response) {
+            $log.log("recipe_ingredients.service.getSpoonacularRecipeIngredients: success");
+            var data = response.data;
+            defer.resolve(data);
+        }, function (response) {
+            defer.reject(response);
+        });
+        return defer.promise;
+    };
+    return service;
+});
+
+app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data", "searchParams", "recipe_instructions", "recipe_ingredients", function ($http, $log, $scope, recipe_list_data, searchParams, recipe_instructions, recipe_ingredients) {
     $log.info("mainController: I am ready to load!");
 
     var self = this;
@@ -100,7 +128,7 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
     this.recipeCookTime = 0;
     this.recipeImageFilename = '';
     this.cuisine_array = ['french', 'vegan', 'italian', 'japanese'];
-    this.cooktime = ['0 - 15 min', '15 - 30 min','30 - 45 min','5 - 60 min','60+ min'];
+    this.cooktime = ['0 - 15 min', '15 - 30 min', '30 - 45 min', '5 - 60 min', '60+ min'];
 
     self.searchParams = searchParams;
 
@@ -114,7 +142,7 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
         });
         console.log("searchInput.style = ", searchParams.style);
 
-        console.log("searchInput.cookTime = ",searchParams.cookTime);
+        console.log("searchInput.cookTime = ", searchParams.cookTime);
         console.log("searchParams service = ", searchParams);
     };
 
@@ -128,13 +156,22 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
                 searchParams.recipeInstructions = data[0].steps;
                 $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
             });
+        self.getRecipeIngredients();
     };
 
     //function to check if 'step' property of searchParams.recipeInstructions contains a number or not
-    this.checkRecipeStep = function(element){
+    this.checkRecipeStep = function (element) {
         return isNaN(parseInt(element.step));
     };
 
-//this.getSpoonacularData();
+    //function to get recipe ingredients, gets called in the 'getRecipeInstructions' function
+    this.getRecipeIngredients = function () {
+        $log.log("getRecipeIngredients function called");
+        recipe_ingredients.getSpoonacularRecipeIngredients()
+            .then(function (data) {
+                searchParams.recipeIngredients = data;
+                $log.log('searchParams.recipeIngredients:', searchParams.recipeIngredients);
+            });
+    }
 }]);
 
