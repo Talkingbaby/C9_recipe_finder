@@ -58,18 +58,18 @@
             <li class="list-group-item salmon">
                 <h4 class="list-group-item-heading">Equipment</h4>
             </li>
-            <li class="list-group-item">
-                frying pan
+            <li class="list-group-item" ng-repeat="instructions in mc.searchParams.recipeInstructions">
+                <div ng-repeat="equip in instructions.equipment">{{ equip.name }}</div>
             </li>
-            <li class="list-group-item">
-                whisk
-            </li>
-            <li class="list-group-item">
-                tongs
-            </li>
-            <li class="list-group-item">
-                bowl
-            </li>
+            <!--<li class="list-group-item">-->
+                <!--whisk-->
+            <!--</li>-->
+            <!--<li class="list-group-item">-->
+                <!--tongs-->
+            <!--</li>-->
+            <!--<li class="list-group-item">-->
+                <!--bowl-->
+            <!--</li>-->
         </div>
         <div class="panel panel-primary">
             <div class="panel-heading">Recipe How to</div>
