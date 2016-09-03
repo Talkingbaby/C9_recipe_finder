@@ -6,6 +6,13 @@ app.factory("searchParams",function () {
 
     return {
         style: "",
-        cookTime: ""
+        cookTime: "",
+        SpoonacularData: [],
+        sortedData: [{id: 0}],
+        recipeID: "",
+        recipeTitle: "",
+        recipeImage: "",
+        recipeInstructions: [],
+        recipeIngredients: []
     };
 });

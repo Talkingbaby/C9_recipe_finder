@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Recipe</title>
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -23,60 +24,21 @@
     </nav>
     <div class="container">
         <div class="jumbotron">
-            <img src="https://spoonacular.com/recipeImages/Easy-French-Dip-Sandwiches-561004.jpg" alt="" class="img-responsive img-rounded center-block">
+            <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-rounded center-block">
         </div>
-        <h2>Easy French Dip Sandwiches</h2>
-        <h3 class="lead">Food Information</h3>
+        <h2>{{mc.searchParams.recipeTitle}}</h2>
+        <h3 class="lead">Number of Servings: <span class="badge">{{mc.searchParams.recipeIngredients.servings}}</span> </h3>
         <div class="list-group">
             <li class="list-group-item salmon">
               <h4 class="list-group-item-heading">Ingredients</h4>
             </li>
-            <li class="list-group-item">
-                olive oil <span class="badge">2 tablespoons</span>
-            </li>
-            <li class="list-group-item">
-                shallot <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                all purpose flour <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                steak seasoning <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                roast beef <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                baguette <span class="badge">A ton</span>
-            </li>
-            <li class="list-group-item">
-                pepper <span class="badge">A ton</span>
-            </li>
-        </div>
-        <div class="list-group">
-            <li class="list-group-item salmon">
-                <h4 class="list-group-item-heading">Equipment</h4>
-            </li>
-            <li class="list-group-item">
-                frying pan
-            </li>
-            <li class="list-group-item">
-                whisk
-            </li>
-            <li class="list-group-item">
-                tongs
-            </li>
-            <li class="list-group-item">
-                bowl
+            <li class="list-group-item" ng-repeat="ingredient in mc.searchParams.recipeIngredients.extendedIngredients">
+                {{ingredient.name}} <span class="badge">{{ingredient.amount | number}} {{ingredient.unit}}</span>
             </li>
         </div>
         <div class="panel panel-primary">
             <div class="panel-heading">Recipe How to</div>
-            <div class="panel-body">In a large skillet over medium heat, add olive oil and heat for 1 minute.</div>
-            <div class="panel-body">Add shallots and sauté for 2 minutes.</div>
-            <div class="panel-body">Add flour and sauté 2 more minutes.Slowly whisk in beef consommé. Bring to a boil over high heat. Reduce heat to low and simmer.</div>
-            <div class="panel-body">Add steak seasoning and pepper.Separate roast beef and place in the au jus sauce until warm. Using tongs, place an equal portion of beef on each section of baguette or rolls. Top with a slice of provolone cheese, if desired.</div>
-            <div class="panel-body">Serve with a small bowl of the extra au jus for dipping. Enjoy!</div>
+            <div class="panel-body" ng-repeat="instruction in mc.searchParams.recipeInstructions | filter: mc.checkRecipeStep">{{instruction.step}}</div>
         </div>
     </div>
 <div class="container">
