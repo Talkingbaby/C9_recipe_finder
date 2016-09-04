@@ -1,16 +1,24 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: Qzxtzrtz
  * Date: 9/2/2016
  * Time: 5:01 PM
  */
+//require_once("credentials.php");
+
+$_POST['cuisine'] = 'japanese';
+$_POST['cookTime_upper'] = '15';
+$_POST['cookTime_lower'] = '0';
 
 $baseUrl = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/";
 
 $searchKey = "recipes/search?cuisine=";
-$searchTerm = "italian";
-$numberOfResults = "&number=3";
+$searchTerm = $_POST['cuisine'];
+$searchTime_upper = $_POST['cookTime_upper'];
+$searchTime_lower = $_POST['cookTime_lower'];
+$numberOfResults = "&number=50";
 $searchForListUrl = $baseUrl.$searchKey.$searchTerm.$numberOfResults;
 $recipeIdArray = [];
 $recipeID = "";
@@ -48,11 +56,14 @@ $recipeList = $data->{"results"};
 foreach($recipeList as $key => $recipe) {
     echo "<br>";
     $recipeID = $recipe->{"id"};
-    //echo $recipeID;
-    echo "<br> recipeIdArray: <br>";
-    array_push($recipeIdArray,$recipeID);
-    print_r($recipeIdArray);
-    echo "<br><br>";
+    $recipeTime = $recipe->{"readyInMinutes"};
+    if(($searchTime_lower <= $recipeTime)&&($recipeTime <= $searchTime_upper )) {
+        //echo $recipeID;
+        echo "<br> recipeIdArray: <br>";
+        array_push($recipeIdArray, $recipeID);
+        print_r($recipeIdArray);
+        echo "<br><br>";
+    }
 }
 
 foreach ($recipeList as $index=> $recipe) {
@@ -89,5 +100,5 @@ echo '<pre>';
 //print_r(gettype($recipeList));
 //print_r($data["[results]"]);
 
-print_r($recipeList);
+print_r("recipeList: <br>".$recipeList);
 echo '</pre>';
