@@ -5,5 +5,6 @@
  * Date: 9/4/2016
  * Time: 9:19 AM
  */
-$conn = mysqli_connect("lizzzzays serv ip", "app user", "app pw ", "dbname");
+$connliz = mysqli_connect("lizzzzays serv ip", "app user", "app pw ", "dbname");
+$conn = mysqli_connect("micah serv ip", "app user", "app pw ", "dbname");
 $db = new mysqli("");

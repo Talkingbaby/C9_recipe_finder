@@ -9,7 +9,7 @@ session_start();
 //require_once("credentials.php");
 
 $_POST['cuisine'] = 'mexican';
-$_POST['cookTime'] = 15;
+$_POST['cookTime'] = 45;
 //$_POST['cookTime_upper'] = 15;
 //$_POST['cookTime_lower'] = 0;
 
@@ -23,9 +23,7 @@ $searchTime = $_POST['cookTime'];
 $numberOfResults = "&number=10";
 $searchForListUrl = $baseUrl.$searchKey.$searchTerm.$numberOfResults;
 $recipeIdArray = [];
-//$recipeID = "";
 $instructionsKey = "/analyzedInstructions?stepBreakdown=true";
-
 
 function httpGet($url)
 {
@@ -50,57 +48,55 @@ function httpGet($url)
     curl_close($ch);
     return $output;
 };
-echo $searchForListUrl;
+
 $data = json_decode(httpGet($searchForListUrl));
 $recipeList = $data->{"results"};
-foreach($recipeList as $key => $recipe) {
+foreach($recipeList as $index => $recipe) {
     echo "<br>";
     $recipeID = $recipe->{"id"};
     $recipeTime = $recipe->{"readyInMinutes"};
     if($searchTime >= $recipeTime) {
-
-        echo "recipeTime = " . $recipeTime;
-        echo "<br>";
-        echo "searchTime = " . $searchTime;
-        echo "<br>";
-        echo '$searchTime >= $recipeTime';
-        echo "<br>pushing to recipeIdArray: <br>";
+            echo "<br> recipeTime = " . $recipeTime;
+            echo "<br> searchTime = " . $searchTime;
+            echo "<br> pushing to recipeIdArray: <br>";
         array_push($recipeIdArray, $recipeID);
-        print_r($recipeIdArray);
-        echo "<br><br>";
-
-        echo "<br> index = " . $key . "<br>";
-        print_r($recipe);
-        echo "<br>";
-        echo 'recipe->{"id"} = ' . $recipe->{"id"} . "<br>";
-        echo "<br>";
-        echo "recipeID = " . $recipeID . "<br>";
-        echo "<br>";
+            print_r($recipeIdArray);
+            echo "<br> index = " . $index . "<br>";
+            print_r($recipe);
+            echo '<br> recipe->{"id"} = ' . $recipe->{"id"} . "<br>";
+            echo "<br> recipeID = " . $recipeID . "<br>";
         $searchForIngredientsUrl = $baseUrl . "recipes/" . $recipeID . "/information?includeNutrition=false";
         $ingredientsData = json_decode(httpGet($searchForIngredientsUrl));
         //unset($ingredientsData->{"id"});
         unset($ingredientsData->{"title"});
         unset($ingredientsData->{"readyInMinutes"});
         unset($ingredientsData->{"image"});
-        echo "<br> ingredientsData: <br>";
-        print_r($ingredientsData);
-        echo "<br> <br>";
+            echo "<br> ingredientsData: <br>";
+            print_r($ingredientsData);
+            echo "<br> <br>";
         $searchForInstructionsUrl = $baseUrl . 'recipes/' . $recipeID . $instructionsKey;
         $instructionsData = json_decode(httpGet($searchForInstructionsUrl));
         $instructionsData[0]->{'name'} = "OMGWTFBBQ";
-        echo "<br> instructionsData: <br>";
-        print_r($instructionsData);
-        echo "<br> <br>";
+            echo "<br> instructionsData: <br>";
+            print_r($instructionsData);
+            echo "<br> <br>";
         $recipe->{'Ingredients'} = $ingredientsData;
         $recipe->{'Cooking Instructions'} = $instructionsData;
     }
     else {
-        unset($recipeList->$recipe); ///WORK ON THIS
+//            echo "<br>";
+//            echo "Cook time < ".$searchTime." ID = ".$recipeID;
+//            echo "<br>";
+//            echo "<br> recipe: <br>";
+//            print_r($recipe);
+//            echo "<br>";
+        unset($recipeList[$index]);
     }
-}
+}//foreach loop
 
-echo '<pre>';
-echo "<br>";
-echo "recipeList: <br>";
-print_r($recipeList);
-echo '</pre>';
+    echo '<pre>';
+    echo "<br> recipeList: <br>";
+    print_r($recipeList);
+    echo "<br> recipeIdArray: <br>";
+    print_r($recipeIdArray);
+    echo '</pre>';
