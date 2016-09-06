@@ -81,6 +81,8 @@ app.factory("recipe_instructions", function ($http, $q, searchParams) {
         }).then(function (response) {
             console.log("recipe_instructions.service.getSpoonacularInstructions: success");
             data = response.data;
+            console.log('response: ', response);
+            console.log('data: ', data);
             defer.resolve(data);
         }, function (response) {
             defer.reject(response);
@@ -153,8 +155,17 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
         searchParams.recipeTitle = searchParams.sortedData[index].title;
         recipe_instructions.getSpoonacularRecipeInstructions()
             .then(function (data) {
-                searchParams.recipeInstructions = data[0].steps;
-                $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+                if (data.length == 0) {
+                    searchParams.recipeInstructions = [];
+                    searchParams.recipeInstructions[0] = {
+                        step: "Sorry, there is no instruction available for this recipe."
+                    };
+                    $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+                }
+                else {
+                    searchParams.recipeInstructions = data[0].steps;
+                    $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+                }
             });
         self.getRecipeIngredients();
     };
