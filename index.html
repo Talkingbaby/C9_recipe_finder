@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="recipeApp">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta charset="UTF-8">
     <title>Cook It</title>
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -9,8 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
     <script src="app.js"></script>
-
-
+    <script src="scripts/services/searchParams.js"></script>
+    <script src="recipe-list-controller.js"></script>
 </head>
 <body ng-controller="mainController as mc">
 <nav class="navbar navbar-inverse">
@@ -18,36 +20,52 @@
         <div class="navbar-header">
             <p class="navbar-brand">CookIn</p>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
-        </ul>
+        <!--Removed for now-->
+        <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><<i class="fa fa-home fa-2x" aria-hidden="true"></i></li>-->
+        <!--</ul>-->
     </div>
 </nav>
-    <div class="container">
-        <div class="mainSearch form-group col-sm-3">
-            <label>Choose Style</label>
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>
+<div class="jumbotron text-center">
+    <h1>Just Cook!</h1>
+    <h4>Don't worry about your next meal.</h4>
+    <h4>Don't worry about where to start.</h4>
+</div>
+    <div class="container-fluid center-block hidden-xs">
+        <div class="form-group form-inline col-xs-12 col-sm-4 col-sm-offset-2 hidden-xs">
+            <label>Choose Cuisine:</label>
+            <select class="form-control form-inline"  ng-model="mc.searchParams.style" ng-options="cuisine for cuisine in mc.cuisine_array">
+            </select>
+
+        </div>
+        <div class="form-group form-inline col-xs-12 col-sm-3">
+            <label>Cook Time:</label>
+            <select class="form-control form-inline" ng-model="mc.searchParams.cookTime" ng-options="cooktime for cooktime in mc.cooktime" ng-click="mc.getSpoonacularData()">
             </select>
         </div>
-        <div class="mainSearch form-group col-sm-3">
-            <label>Choose Number of Ingredients</label>
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-      <div class="buttonWrap">
-        <button class="btn btn-success">Search</button>
-        <button class="btn btn-success">Random</button>
-      </div>
+
+        <a href="#recipe-list"><button class="btn btn-success hidden-xs">Search</button></a>
+        <button class="btn btn-success hidden-xs" ng-click="mc.getSpoonacularData()">Random</button>
     </div>
-<footer class="footer navbar-inverse navbar-fixed-bottom">
-    <p>Coooooooooooooooooooook</p>
-</footer>
+
+<div class="form-group col-xs-12 visible-xs-block">
+    <label>Choose Cuisine</label>
+    <select class="form-control"  ng-model="mc.searchParams.style">
+        <option value="french" >French</option>
+        <option value="vegan">Vegan</option>
+    </select>
+</div>
+<div class="form-group col-xs-12 visible-xs-block">
+    <label>Cook Time</label>
+    <select class="form-control" ng-model="mc.searchParams.cookTime" ng-click="mc.getSpoonacularData()">
+        <option value="15">0 - 15 min</option>
+        <option value="30">15 - 30 min</option>
+        <option value="45">30 - 45 min</option>
+        <option value="60">45 - 60 min</option>
+        <option value="65">60+ min</option>
+    </select>
+</div>
+
+<a href="#recipe-list"><button class="btn btn-success col-xs-10 col-xs-offset-1 visible-xs-block">Search</button></a>
 </body>
 </html>
