@@ -8,7 +8,7 @@ app.factory("searchParams",function () {
         style: "",
         cookTime: "",
         SpoonacularData: [],
-        sortedData: [{id: 0}],
+        sortedData: [],
         recipeID: "",
         recipeTitle: "",
         recipeImage: "",
