@@ -58,20 +58,11 @@
 
 <div class="form-group col-xs-12 visible-xs-block">
     <label>Choose Cuisine</label>
-    <select class="form-control"  ng-model="mc.searchParams.style">
-        <option value="french" >French</option>
-        <option value="vegan">Vegan</option>
-    </select>
+    <select class="form-control"  ng-model="mc.searchParams.style" ng-options="cuisine for cuisine in mc.cuisine_array"></select>
 </div>
 <div class="form-group col-xs-12 visible-xs-block">
     <label>Cook Time</label>
-    <select class="form-control" ng-model="mc.searchParams.cookTime" ng-click="mc.getSpoonacularData()">
-        <option value="15">0 - 15 min</option>
-        <option value="30">15 - 30 min</option>
-        <option value="45">30 - 45 min</option>
-        <option value="60">45 - 60 min</option>
-        <option value="65">60+ min</option>
-    </select>
+    <select class="form-control" ng-model="mc.searchParams.cookTime" ng-click="mc.getSpoonacularData()" ng-options="cooktime for cooktime in mc.cooktime"></select>
 </div>
 
 <a href="#recipe-list"><button class="btn btn-success col-xs-10 col-xs-offset-1 visible-xs-block">Search</button></a>
