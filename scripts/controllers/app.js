@@ -2,30 +2,25 @@ var app = angular.module('recipeApp', ['ngRoute']);
 
 
 app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data", "searchParams", "recipe_instructions", "recipe_ingredients", function ($http, $log, $scope, recipe_list_data, searchParams, recipe_instructions, recipe_ingredients) {
-    $log.info("mainController: I am ready to load!");
+    //$log.info("mainController: I am ready to load!");
 
     var self = this;
-    this.spoonacularData = [];
-    this.recipeTitle = '';
-    this.recipeCookTime = 0;
-    this.recipeImageFilename = '';
-    this.cuisine_array = ['french', 'vegan', 'italian', 'japanese'];
-    this.cooktime = ['0 - 15 min', '15 - 30 min', '30 - 45 min', '45 - 60 min', '60+ min'];
+    this.cuisine_array = ['french', 'vegan', 'italian', 'japanese']; //array for mg-options
+    this.cooktime = ['0 - 15 min', '15 - 30 min', '30 - 45 min', '45 - 60 min', '60+ min']; //array for ng-options
 
     self.searchParams = searchParams;
 
     this.getSpoonacularData = function () {
         //var self = this;
         recipe_list_data.callSpoonacularData().then(function (data) {
-            $log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
+            //$log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
             //self.spoonacularData = data.results;
             searchParams.SpoonacularData = data.results;
-            $log.log('KYLE spoonacularData: ', searchParams);
+            //$log.log('KYLE spoonacularData: ', searchParams);
         });
-        console.log("searchInput.style = ", searchParams.style);
-
-        console.log("searchInput.cookTime = ", searchParams.cookTime);
-        console.log("searchParams service = ", searchParams);
+        // console.log("searchInput.style = ", searchParams.style);
+        // console.log("searchInput.cookTime = ", searchParams.cookTime);
+        // console.log("searchParams service = ", searchParams);
     };
 
     this.getRecipeInstructions = function (index) {
@@ -40,11 +35,11 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
                     searchParams.recipeInstructions[0] = {
                         step: "Sorry, there is no instruction available for this recipe."
                     };
-                    $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+                    //$log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
                 }
                 else {
                     searchParams.recipeInstructions = data[0].steps;
-                    $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
+                    //$log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
                 }
             });
         self.getRecipeIngredients();
@@ -57,14 +52,15 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
 
     //function to get recipe ingredients, gets called in the 'getRecipeInstructions' function
     this.getRecipeIngredients = function () {
-        $log.log("getRecipeIngredients function called");
+        //$log.log("getRecipeIngredients function called");
         recipe_ingredients.getSpoonacularRecipeIngredients()
             .then(function (data) {
                 searchParams.recipeIngredients = data;
-                $log.log('searchParams.recipeIngredients:', searchParams.recipeIngredients);
+                //$log.log('searchParams.recipeIngredients:', searchParams.recipeIngredients);
             });
     }
 
+    //tied to click handler to reset search params when returning to the home page
     this.resetSearchParams = function(){
         searchParams.style = "";
         searchParams.cookTime = "";
@@ -76,7 +72,7 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
         searchParams.recipeInstructions = [];
         searchParams.recipeIngredients = [];
 
-        $log.info("KYLE I am empty params: ", searchParams);
+       // $log.info("KYLE I am empty params: ", searchParams);
     };
 
 }]);

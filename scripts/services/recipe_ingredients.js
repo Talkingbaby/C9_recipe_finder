@@ -16,7 +16,7 @@ app.factory("recipe_ingredients", function ($http, $q, $log, searchParams) {
             dataTpe: "json",
             headers: {"X-Mashape-Key": "VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9"}
         }).then(function (response) {
-            $log.log("recipe_ingredients.service.getSpoonacularRecipeIngredients: success");
+            //$log.log("recipe_ingredients.service.getSpoonacularRecipeIngredients: success");
             var data = response.data;
             defer.resolve(data);
         }, function (response) {

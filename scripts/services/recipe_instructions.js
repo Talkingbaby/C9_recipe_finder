@@ -20,8 +20,8 @@ app.factory("recipe_instructions", function ($http, $q, searchParams) {
         }).then(function (response) {
             console.log("recipe_instructions.service.getSpoonacularInstructions: success");
             data = response.data;
-            console.log('response: ', response);
-            console.log('data: ', data);
+            // console.log('response: ', response);
+            // console.log('data: ', data);
             defer.resolve(data);
         }, function (response) {
             defer.reject(response);
