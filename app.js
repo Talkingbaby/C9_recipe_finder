@@ -184,5 +184,20 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
                 $log.log('searchParams.recipeIngredients:', searchParams.recipeIngredients);
             });
     }
+
+    this.resetSearchParams = function(){
+        searchParams.style = "";
+        searchParams.cookTime = "";
+        searchParams.SpoonacularData = [];
+        searchParams.sortedData = [];
+        searchParams.recipeID = "";
+        searchParams.recipeTitle = "";
+        searchParams.recipeImage = "";
+        searchParams.recipeInstructions = [];
+        searchParams.recipeIngredients = [];
+
+        $log.info("KYLE I am empty params: ", searchParams);
+    };
+
 }]);
 
