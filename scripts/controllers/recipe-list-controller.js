@@ -3,13 +3,13 @@ app.controller('recipe-list-controller',["$log","$http","searchParams", "recipe_
     var sorted_array = [];
 
 
-    console.log("list controller");
+    //console.log("list controller");
     self.searchParams = searchParams;
     //$log.log("searchParam in recipe-list-controller:",searchParams);
     ////a function to find recipe within the cooking time
     self.sort = function () {
-        console.log('self.sort function called', searchParams.cookTime);
-        console.log('SpoonacularData: ', searchParams.SpoonacularData);
+        // console.log('self.sort function called', searchParams.cookTime);
+        // console.log('SpoonacularData: ', searchParams.SpoonacularData);
         for (var i=0; i<searchParams.SpoonacularData.length; i++) {
             switch (searchParams.cookTime) {
                 case "0 - 15 min" :
@@ -44,26 +44,11 @@ app.controller('recipe-list-controller',["$log","$http","searchParams", "recipe_
                     break;
             }
         }
-        console.log('sorted array: ', sorted_array);
+        //console.log('sorted array: ', sorted_array);
     };
     self.sort();
     searchParams.sortedData = sorted_array;
 
-    console.log("searchParam in list: ", searchParams);
-
-
-    // this.getRecipeInstructions = function (index) {
-    //     $log.log('getRecipeInstructions function called');
-    //     $log.log('sortedData: ', searchParams.sortedData);
-    //     searchParams.recipeID = searchParams.sortedData[index].id;
-    //     $log.log('searchParams.recipeID:', searchParams.recipeID);
-    //     recipe_instructions.getSpoonacularRecipeInstructions()
-    //         .then(function (data) {
-    //             searchParams.recipeInstructions = data[0].steps;
-    //             $log.log('searchParams.recipeInstructions:', searchParams.recipeInstructions);
-    //         });
-    // };
-
-    //this.getRecipeInstructions(0);
+    //console.log("searchParam in list: ", searchParams);
 
 }]);
