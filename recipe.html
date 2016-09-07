@@ -10,18 +10,25 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="col-md-4">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#recipe-list"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <h1 class="white-text">Yummly</h1>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="col-sm-4">
+            <div class="navbar-header">
+                <div class="navbar-brand"><a href="#/"><i class="fa fa-home fa-2x white-text" aria-hidden="true"></i></a></div>
+                <div class="navbar-brand"><a href="#recipe-list"><i class="fa fa-arrow-left fa-2x white-text" aria-hidden="true"></i></a></div>
             </div>
         </div>
-    </nav>
+        <div class="col-sm-4 text-center">
+            <h1 class="white-text">Simply</h1>
+        </div>
+        <div class="col-sm-4">
+            <div class="navbar-header navbar-right">
+                <div class="navbar-brand"><i class="fa fa-facebook fa-2x white-text" aria-hidden="true"></i></div>
+                <div class="navbar-brand"><i class="fa fa-pinterest fa-2x white-text" aria-hidden="true"></i></div>
+            </div>
+        </div>
+    </div>
+</nav>
     <div>
         <div>
             <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-rounded center-block">
