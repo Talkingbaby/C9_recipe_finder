@@ -21,8 +21,9 @@
                     //Change data.source to data.something , where something is whichever part of the object you want returned.
                     //To see the whole object you can output it to your browser console using:
                     //console.log(data);
-                    document.getElementById("output").innerHTML = data.source;
+                    document.getElementById("output").innerHTML = data.results[1].id + data.results[1].title;
                     console.log('response! ',data);
+                    insertData(data);
                 },
                 error: function(err) { alert(err); },
                 beforeSend: function(xhr) {
@@ -32,12 +33,24 @@
 
 
         }
+        var insertData = function(data){
+                    console.log('the function insertData has been called');
+                    $.ajax({
+                                url: "index_insert.php",
+                                method: "POST",
+                                data: {data},
+                                success: function(response){
+                                        console.log('response ', response);
+                                    },
+                                error: function(err) { alert(err);}
+                    });
+        };
 
     </script>
 </head>
 <body>
 
 <button onclick="doIt()">Run the request</button>
-<div id="output">The API request is:</div>
+<div id="output">The API will return data here...</div>
 
 </body>
