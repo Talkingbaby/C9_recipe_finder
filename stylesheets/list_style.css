@@ -1,4 +1,6 @@
-
+body{
+	background-image: unset;
+}
 .recipe-border {
 	margin: 5px auto;
 	border: 5px solid dodgerblue;
@@ -6,7 +8,6 @@
 	/*height: 50px;*/
 	border-radius: 50px;
 }
-
 /* this is a hack that centers the recipe time number in the recipe-border div */
 .recipe-border:before {
 	display: inline-block;
