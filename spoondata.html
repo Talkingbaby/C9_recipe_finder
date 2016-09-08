@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>Mashape Query</title>
+    <script>
+//        endpoint: https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex
+//                'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?cuisine=american&diet=vegan&fillIngredients=false&limitLicense=true&number=10&offset=0&query=vegan&ranking=1&type=main+course' \
+//        -H 'X-Mashape-Key: VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9'
+
+        function doIt() {
+            console.log('doIt called!')
+            var output = $.ajax({
+                url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex', // The URL to the API. You can get this by clicking on "Show CURL example" from an API profile
+                type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+                data: {'diet':'vegan','fillIngredients': 'false', 'number':'10','offset':'0','query':'vegan','ranking':'1'}, // Additional parameters here
+                dataType: 'json',
+                success: function(data) {
+                    //
+                    //Change data.source to data.something , where something is whichever part of the object you want returned.
+                    //To see the whole object you can output it to your browser console using:
+                    //console.log(data);
+                    document.getElementById("output").innerHTML = data.results[1].id + data.results[1].title;
+                    console.log('response! ',data);
+                    insertData(data);
+                },
+                error: function(err) { alert(err); },
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-Mashape-Authorization", "VpQmAeJYO5msh7bVwZT13pUsanqKp1DU33NjsnvQ9KO5VtnlU9"); // Enter here your Mashape key
+                }
+            });
+
+
+        }
+        var insertData = function(data){
+                    console.log('the function insertData has been called');
+                    $.ajax({
+                                url: "index_insert.php",
+                                method: "POST",
+                                data: {data},
+                                success: function(response){
+                                        console.log('response ', response);
+                                    },
+                                error: function(err) { alert(err);}
+                    });
+        };
+
+    </script>
+</head>
+<body>
+
+<button onclick="doIt()">Run the request</button>
+<div id="output">The API will return data here...</div>
+
+</body>
