@@ -39,8 +39,8 @@
     <h4>Don't worry about your next meal.</h4>
     <h4>Don't worry about where to start.</h4>
 </div>
-    <div class="container-fluid center-block hidden-xs">
-        <div class="form-group form-inline col-xs-12 col-sm-4 col-sm-offset-2 hidden-xs">
+    <div class="container-fluid center-block">
+        <div class="form-group form-inline col-xs-12 col-sm-4 col-sm-offset-2">
             <label>Choose Cuisine:</label>
             <select class="form-control form-inline"  ng-model="mc.searchParams.style" ng-options="cuisine for cuisine in mc.cuisine_array">
             </select>
@@ -52,8 +52,7 @@
             </select>
         </div>
 
-        <a href="#recipe-list"><button class="btn btn-success hidden-xs">Search</button></a>
-        <button class="btn btn-success hidden-xs" ng-click="mc.getSpoonacularData()">Random</button>
+        <a href="#recipe-list"><button class="btn btn-success">Search</button></a>
     </div>
 </body>
 </html>
