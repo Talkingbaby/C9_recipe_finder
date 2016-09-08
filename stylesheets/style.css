@@ -1,11 +1,25 @@
 body{
-    /*background-image: url("https://s-media-cache-ak0.pinimg.com/736x/cd/50/00/cd5000a8e0fbb2620c7a61350490b3cc.jpg");*/
-    /*background-position: center bottom;*/
-    /*background-repeat: no-repeat;*/
-    /*background-attachment: fixed;*/
+    background-image: url("http://img02.deviantart.net/d3ae/i/2012/041/5/4/too_cute_to_eat_by_mavigozlum-d4p8sae.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
 div.container-fluid{
     padding-left: 50px;
+}
+nav.navbar{
+    background-color: salmon;
+    outline: 2px solid white;
+}
+h1.white-text{
+    text-indent: 65px;
+}
+div.jumbotron{
+    background-color: unset;
+    text-shadow: 1px 1px white;
 }
 .searchButton{
     padding: 24px;
@@ -16,7 +30,8 @@ div.container-fluid{
 .white-text {
 	color: white;
 }
-
+/******recipe page*******/
 .list-group-item.salmon {
 	background-color: salmon;
 }
+
