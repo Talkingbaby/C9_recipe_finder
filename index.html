@@ -39,20 +39,47 @@
     <h4>Don't worry about your next meal.</h4>
     <h4>Don't worry about where to start.</h4>
 </div>
-    <div class="container-fluid center-block">
-        <div class="form-group form-inline col-xs-12 col-sm-4 col-sm-offset-2">
+    <div class="container-fluid ">
+        <div class="form-group form-inline col-xs-12 text-center">
             <label>Choose Cuisine:</label>
-            <select class="form-control form-inline"  ng-model="mc.searchParams.style" ng-options="cuisine for cuisine in mc.cuisine_array">
-            </select>
-
+            <!--<select class="form-control form-inline"  ng-model="mc.searchParams.style" ng-options="cuisine for cuisine in mc.cuisine_array">-->
+            <!--</select>-->
+            <label class="radio-inline">
+                <input type="radio" ng-model="mc.searchParams.style" value="french">french
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="mc.searchParams.style" value="vegan">vegan
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="mc.searchParams.style" value="italian">italian
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="mc.searchParams.style" value="japanese">japanese
+            </label>
         </div>
-        <div class="form-group form-inline col-xs-12 col-sm-3">
-            <label>Cook Time:</label>
-            <select class="form-control form-inline" ng-model="mc.searchParams.cookTime" ng-options="cooktime for cooktime in mc.cooktime" ng-click="mc.getSpoonacularData()">
-            </select>
-        </div>
-
-        <a href="#recipe-list"><button class="btn btn-success">Search</button></a>
+     </div>
+    <div class="container-fluid center-block">
+            <div class="form-group form-inline col-xs-12 text-center">
+                <label>Cook Time:</label>
+                <!--<select class="form-control form-inline" ng-model="mc.searchParams.cookTime" ng-options="cooktime for cooktime in mc.cooktime" ng-click="mc.getSpoonacularData()">-->
+                <!--</select>-->
+                <label class="radio-inline">
+                    <input type="radio" ng-model="mc.searchParams.cookTime" value="0-15">0 - 15 min
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="mc.searchParams.cookTime" value="15-30">15 - 30 min
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="mc.searchParams.cookTime" value="30-45">30 - 45 min
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="mc.searchParams.cookTime" value="45-60">45 - 60 min
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="mc.searchParams.cookTime" value="60+">60+ min
+                </label>
+            </div>
     </div>
+<a href="#recipe-list"><button class="btn btn-success" ng-click="mc.getSpoonacularData()">Search</button></a>
 </body>
 </html>

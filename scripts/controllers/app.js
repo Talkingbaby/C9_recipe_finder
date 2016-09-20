@@ -5,7 +5,6 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
     //$log.info("mainController: I am ready to load!");
 
     var self = this;
-    this.cuisine_array = ['french', 'vegan', 'italian', 'japanese']; //array for mg-options
     this.cooktime = ['0 - 15 min', '15 - 30 min', '30 - 45 min', '45 - 60 min', '60+ min']; //array for ng-options
 
     self.searchParams = searchParams;
@@ -18,9 +17,9 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
             searchParams.SpoonacularData = data.results;
             //$log.log('KYLE spoonacularData: ', searchParams);
         });
-        // console.log("searchInput.style = ", searchParams.style);
-        // console.log("searchInput.cookTime = ", searchParams.cookTime);
-        // console.log("searchParams service = ", searchParams);
+        console.log("searchInput.style = ", searchParams.style);
+        console.log("searchInput.cookTime = ", searchParams.cookTime);
+         console.log("searchParams service = ", searchParams);
     };
 
     this.getRecipeInstructions = function (index) {
