@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Recipe</title>
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/recipe_style.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 </head>
@@ -24,9 +25,9 @@
         </div>
     </div>
 </nav>
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-10 col-sm-offset-1 all-white">
         <div>
-            <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-rounded center-block">
+            <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-thumbnail center-block">
         </div>
         <h2>{{mc.searchParams.recipeTitle}}</h2>
         <h3 class="lead">Number of Servings: <span class="badge">{{mc.searchParams.recipeIngredients.servings}}</span> </h3>
@@ -34,12 +35,12 @@
             <li class="list-group-item salmon">
               <h4 class="list-group-item-heading">Ingredients</h4>
             </li>
-            <li class="list-group-item" ng-repeat="ingredient in mc.searchParams.recipeIngredients.extendedIngredients">
+            <li class="list-group-item override" ng-repeat="ingredient in mc.searchParams.recipeIngredients.extendedIngredients">
                 {{ingredient.name}} <span class="badge">{{ingredient.amount | number: 1}} {{ingredient.unit}}</span>
             </li>
         </div>
         <div class="panel panel-primary">
-            <div class="panel-heading">Recipe How to</div>
+            <h4 class="panel-heading">Recipe How to</h4>
             <div class="panel-body" ng-repeat="instruction in mc.searchParams.recipeInstructions | filter: mc.checkRecipeStep">{{instruction.step}}</div>
         </div>
     </div>
