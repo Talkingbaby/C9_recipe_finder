@@ -16,11 +16,11 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
             //$log.log('recipe_list_data.callSpoonacularData(): success, data = ', data);
             //self.spoonacularData = data.results;
             searchParams.SpoonacularData = data.results;
-            //$log.log('KYLE spoonacularData: ', searchParams);
+            $log.log('KYLE spoonacularData: ', searchParams);
         });
         // console.log("searchInput.style = ", searchParams.style);
         // console.log("searchInput.cookTime = ", searchParams.cookTime);
-        // console.log("searchParams service = ", searchParams);
+        //console.log("searchParams service = ", searchParams);
     };
 
     this.getRecipeInstructions = function (index) {
@@ -58,7 +58,7 @@ app.controller('mainController', ["$http", "$log", "$scope", "recipe_list_data",
                 searchParams.recipeIngredients = data;
                 //$log.log('searchParams.recipeIngredients:', searchParams.recipeIngredients);
             });
-    }
+    };
 
     //tied to click handler to reset search params when returning to the home page
     this.resetSearchParams = function(){
