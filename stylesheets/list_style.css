@@ -1,9 +1,12 @@
 body{
-	background-image: unset;
+	background-image: url('https://static.pexels.com/photos/31500/pexels-photo.jpg');
+	background-position: center;
+	background-repeat: repeat;
+	background-size: contain;
 }
 .recipe-border {
 	margin: 5px auto;
-	border: 5px solid dodgerblue;
+	border: 5px solid white;
 	width: 50px;
 	/*height: 50px;*/
 	border-radius: 50px;
@@ -18,5 +21,9 @@ body{
 .recipe-time {
 	vertical-align: middle;
 	font-size: 18px;
+	color: white;
 }
 /* without this the number stays at the top of the recipe border div instead of the center */
+a h3, a h5{
+	color: white;
+}

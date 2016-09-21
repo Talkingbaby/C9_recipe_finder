@@ -1,5 +1,5 @@
 body{
-    background-image: url("http://a1.fanbread.com/uploads/image/file/55970/extra_large_mosogourmet-1.jpg?a9fa25c26f5b603f2582cb5266106c9f");
+    background-image: url('https://static.pexels.com/photos/86753/pexels-photo-86753.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,31 +7,43 @@ body{
     padding: 0;
     height: 100vh;
 }
+body.new-font{
+    font-family: 'Playfair Display', serif;
+}
 div.container-fluid{
     padding-left: 50px;
 }
 nav.navbar{
-    background-color: salmon;
+    background-color: black;
     outline: 2px solid white;
+    margin: 0;
 }
 h1.white-text{
     text-indent: 65px;
 }
-div.jumbotron{
-    background-color: unset;
-    text-shadow: 1px 1px white;
-}
-.searchButton{
-    padding: 24px;
-}
-.btn{
-    margin-right: 5px;
-}
 .white-text {
 	color: white;
 }
-/******recipe page*******/
-.list-group-item.salmon {
-	background-color: salmon;
+div.container-fluid.override{
+    margin: 0;
+    padding: 0;
+    padding-top: 10vh;
+}
+div.first, div.second{
+    color: black;
+    padding-top: 10px;
+    font-size: 1.3em;
+}
+div.first.jumbotron{
+    padding: 10px;
+    background-color: rgba(255,255,255, 0.7);
+}
+div.first.jumbotron h1{
+    margin-top: 0;
+}
+div.second label{
+    background-color: rgba(255,255,255, 0.7);
+    border-radius: 10px;
+    padding: 5px;
 }
 
