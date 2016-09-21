@@ -21,26 +21,29 @@ nav.navbar{
 h1.white-text{
     text-indent: 65px;
 }
-div.jumbotron{
-    background-color: unset;
-    text-shadow: 1px 1px white;
-}
-.searchButton{
-    padding: 24px;
-}
-.btn{
-    margin-right: 5px;
-}
 .white-text {
 	color: white;
 }
 div.container-fluid.override{
     margin: 0;
     padding: 0;
+    padding-top: 10vh;
 }
 div.first, div.second{
     color: black;
-    padding-top: 50px;
-    text-shadow: 1px 1px white;
+    padding-top: 10px;
+    font-size: 1.3em;
+}
+div.first.jumbotron{
+    padding: 10px;
+    background-color: rgba(255,255,255, 0.7);
+}
+div.first.jumbotron h1{
+    margin-top: 0;
+}
+div.second label{
+    background-color: rgba(255,255,255, 0.7);
+    border-radius: 10px;
+    padding: 5px;
 }
 
