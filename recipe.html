@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/recipe_style.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="col-xs-12 col-sm-4 col-sm-push-4">
+            <h1 class="white-text">Simply</h1>
+        </div>
+        <div class="col-sm-2 col-sm-pull-4">
+            <div class="navbar-brand"><a href="#/" ng-click="mc.resetSearchParams()"><i class="fa fa-home fa-2x white-text" aria-hidden="true"></i></a></div>
+            <div class="navbar-brand"><a href="#/recipe-list"><i class="fa fa-arrow-left fa-2x white-text" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="col-sm-2 navbar-right">
+            <div class="navbar-brand"><i class="fa fa-facebook fa-2x white-text" aria-hidden="true"></i></div>
+            <div class="navbar-brand"><i class="fa fa-pinterest fa-2x white-text" aria-hidden="true"></i></div>
+        </div>
+    </div>
+</nav>
+    <div class="col-sm-10 col-sm-offset-1 all-white">
+        <div>
+            <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-thumbnail center-block">
+        </div>
+        <h2>{{mc.searchParams.recipeTitle}}</h2>
+        <h3 class="lead">Number of Servings: <span class="badge">{{mc.searchParams.recipeIngredients.servings}}</span> </h3>
+        <div class="list-group">
+            <li class="list-group-item salmon">
+              <h4 class="list-group-item-heading">Ingredients</h4>
+            </li>
+            <li class="list-group-item override" ng-repeat="ingredient in mc.searchParams.recipeIngredients.extendedIngredients">
+                {{ingredient.name}} <span class="badge">{{ingredient.amount | number: 1}} {{ingredient.unit}}</span>
+            </li>
+        </div>
+        <div class="panel panel-primary">
+            <h4 class="panel-heading">Recipe How to</h4>
+            <div class="panel-body" ng-repeat="instruction in mc.searchParams.recipeInstructions | filter: mc.checkRecipeStep">{{instruction.step}}</div>
+        </div>
+    </div>
+</body>
+</html>

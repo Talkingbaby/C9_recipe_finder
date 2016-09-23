@@ -1,0 +1,30 @@
+[
+  {
+    name ,
+    steps [
+      {
+        number 1,
+        step Optional sort your lentils to make sure there arent any small stones left. Rinse the lentils and let them soak for a couple of hours in lukewarm water before cooking.Put all the ingredients together in a saucepan and cook for 45mn to 1 hour over medium heat, until the lentils are cooked.If you use a pressure cooker, the soup will be ready in 20 minutes.I serve mine with a handful of plum black olives, such as Volos.Find more recipes on my blog httpalalemon.com,
+        ingredients [
+          {
+            id 14412,
+            name water,
+            image httpsspoonacular.comcdningredients_100x100water.jpg
+          }
+        ],
+        equipment [
+          {
+            id 404658,
+            name pressure cooker,
+            image httpsspoonacular.comcdnequipment_100x100pressure-cooker.jpg
+          },
+          {
+            id 404669,
+            name sauce pan,
+            image httpsspoonacular.comcdnequipment_100x100sauce-pan.jpg
+          }
+        ]
+      }
+    ]
+  }
+]
