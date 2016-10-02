@@ -1,7 +1,7 @@
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: "index.html"
+            templateUrl: "home.html"
         })
         .when('/recipe-list', {
             templateUrl: "list.html",
