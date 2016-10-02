@@ -15,8 +15,6 @@ div.container-fluid{
     padding-left: 50px;
 }
 nav.navbar{
-
-
     margin: 0;
     margin-bottom: 5vh;
     box-shadow: 3px 3px 5px black;
@@ -48,5 +46,11 @@ div.second label{
     background-color: rgba(255,255,255, 0.7);
     border-radius: 10px;
     padding: 5px;
+}
+@media screen and (max-width: 767px){
+    body{
+        background-repeat: repeat-y;
+        padding-top: 20vh;
+    }
 }
 
