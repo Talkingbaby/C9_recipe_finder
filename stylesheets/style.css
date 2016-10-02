@@ -1,10 +1,11 @@
 body{
-    background-image: url('https://static.pexels.com/photos/86753/pexels-photo-86753.jpeg');
+    background-image: url('images/img-md/pexels-photo-86753.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
     padding: 0;
+    padding-top: 15vh;
     height: 100vh;
 }
 body.new-font{
@@ -14,9 +15,11 @@ div.container-fluid{
     padding-left: 50px;
 }
 nav.navbar{
-    background-color: black;
-    outline: 2px solid white;
+
+
     margin: 0;
+    margin-bottom: 5vh;
+    box-shadow: 3px 3px 5px black;
 }
 h1.white-text{
     text-indent: 65px;

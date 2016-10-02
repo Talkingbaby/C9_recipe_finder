@@ -9,8 +9,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 </head>
-<body ng-controller="mainController as mc">
-<nav class="navbar navbar-inverse">
+<body ng-controller="mainController as mc" class="override">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="col-xs-12 col-sm-4 col-sm-push-4">
             <h1 class="white-text">Simply</h1>
@@ -25,20 +25,18 @@
         </div>
     </div>
 </nav>
-<div class="recipes container">
-
-    <div class="col-xs-12 col-sm-4" ng-repeat="x in mc.searchParams.sortedData" ng-click="mc.getRecipeInstructions($index)">
-        <a href="#recipe">
-            <h3 class="text-center">{{x.title}}</h3>
-            <img class="col-sm-12 img-responsive img-thumbnail" ng-src="http://spoonacular.com/recipeImages/{{x.image}}">
-            <div class="col-sm-12 text-center">
-                <h5>Ready in</h5>
-                <div class="recipe-border"><span class="recipe-time">{{x.readyInMinutes}}</span></div>
-                <h5>minutes</h5>
-            </div>
-        </a>
+    <div class="col-xs-12 col-sm-5 col-sm-push-1" ng-repeat="x in mc.searchParams.sortedData" ng-click="mc.getRecipeInstructions($index)">
+        <div class="panel panel-default text-center">
+            <a href="#recipe">
+                <h3 class="text-center panel-heading">{{x.title}}</h3>
+                <img class="img-responsive panel-body" ng-src="http://spoonacular.com/recipeImages/{{x.image}}">
+                <div class="text-center panel-footer">
+                    <h5>Ready in</h5>
+                    <div class="recipe-border"><span class="recipe-time">{{x.readyInMinutes}}</span></div>
+                    <h5>minutes</h5>
+                </div>
+            </a>
+        </div>
     </div>
-
-</div>
 </body>
 </html>
