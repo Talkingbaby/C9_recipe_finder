@@ -10,7 +10,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="col-xs-12 col-sm-4 col-sm-push-4">
             <h1 class="white-text">Simply</h1>
@@ -29,8 +29,8 @@
         <div>
             <img ng-src="{{mc.searchParams.recipeImage}}" alt="" class="img-responsive img-thumbnail center-block">
         </div>
-        <h2>{{mc.searchParams.recipeTitle}}</h2>
-        <h3 class="lead">Number of Servings: <span class="badge">{{mc.searchParams.recipeIngredients.servings}}</span> </h3>
+        <h1><strong>{{mc.searchParams.recipeTitle}}</strong></h1>
+        <h2 class="lead"><strong>Number of Servings: </strong><span class="badge">{{mc.searchParams.recipeIngredients.servings}}</span> </h2>
         <div class="list-group">
             <li class="list-group-item salmon">
               <h4 class="list-group-item-heading">Ingredients</h4>

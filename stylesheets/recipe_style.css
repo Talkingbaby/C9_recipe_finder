@@ -1,22 +1,19 @@
-body{
-    background-image: url('https://static.pexels.com/photos/1398/food-vegetables-meal-kitchen.jpg');
-    background-position: center;
-    background-repeat: repeat;
-    background-size: contain;
-}
+
 li.salmon{
     background-color: salmon;
     border-color: salmon;
 }
 li.list-group-item.override{
     border-color: salmon;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.7);
+    color: white;
 }
 div.all-white{
     color: white;
 }
 div.panel{
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.7);
+    color: white;
 }
 div.panel h4{
     margin: 0;
@@ -24,6 +21,6 @@ div.panel h4{
 div{
     font-size: 1.1em;
 }
-h2, h3{
+div h1, div h2{
     text-shadow: 2px 2px black;
 }
