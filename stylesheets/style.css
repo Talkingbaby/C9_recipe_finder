@@ -52,5 +52,11 @@ div.second label{
         background-repeat: repeat-y;
         padding-top: 20vh;
     }
+    nav div h1{
+        margin: 5px 0;
+    }
+    nav div.navbar-brand{
+        padding: 8px 15px;
+    }
 }
 
